@@ -18,7 +18,7 @@ namespace PokerPlayer
 
         private const string TeamName = "Poker-Bash";
 
-        public const string Version = "0.9";
+        public const string Version = "1.0RC37";
 
         public string Check()
         {
@@ -123,7 +123,7 @@ namespace PokerPlayer
         {
             get
             {
-                return _gameState.players.Where(p => !string.IsNullOrEmpty(p.name)).First(p => p.name.Contains(TeamName));
+                return _gameState.players.Where(p => !string.IsNullOrEmpty(p.name)).First(p => p.name.Contains("Basher"));
             }
         }
     }
