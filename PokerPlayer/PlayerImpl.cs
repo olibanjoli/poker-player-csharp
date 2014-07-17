@@ -18,7 +18,7 @@ namespace PokerPlayer
 
         private const string TeamName = "Poker-Bash";
 
-        public const string Version = "1.1";
+        public const string Version = "1.2";
 
         public string Check()
         {
@@ -51,6 +51,26 @@ namespace PokerPlayer
                 if (Basher.hole_cards.All(p => p.CompareTo(new Card("h", "J")) >= 0))
                 {
                     return this.Call();
+                }
+
+                if (Basher.hole_cards != null && Basher.hole_cards[0].suit == Basher.hole_cards[1].suit)
+                {
+                    if (gameState.community_cards != null && gameState.community_cards.Count() == 3)
+                    {
+                        if (gameState.community_cards.All(p => p.suit == Basher.hole_cards[0].suit))
+                        {
+                            return 1000;
+                        }
+                        else
+                        {
+                            return 0;
+                        }
+                    }
+
+                    if (gameState.current_buy_in < 40)
+                    {
+                        return this.Call();
+                    }
                 }
 
                 if (this.IsCombination("5", "9"))

@@ -10,7 +10,7 @@ namespace PokerPlayer.Generated
         public int small_blind { get; set; }
         public int orbits { get; set; }
         public int dealer { get; set; }
-        public object[] community_cards { get; set; }
+        public Card[] community_cards { get; set; }
 
         public int current_buy_in { get; set; }
 
