@@ -11,7 +11,7 @@ namespace PokerPlayer
 
         private const string TeamName = "Poker-Bash";
 
-        public const string Version = "0.2";
+        public const string Version = "0.3";
 
         public string Check()
         {
