@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -10,13 +11,14 @@ namespace PokerPlayer
 
     public class PlayerImpl
     {
-        public static List<Rootobject> requestLog = new List<Rootobject>(); 
+        public static List<Rootobject> requestLog = new List<Rootobject>();
+        public static List<Exception> exceptionLog = new List<Exception>(); 
 
         private Rootobject _gameState;
 
         private const string TeamName = "Poker-Bash";
 
-        public const string Version = "0.7";
+        public const string Version = "0.8";
 
         public string Check()
         {
@@ -67,13 +69,20 @@ namespace PokerPlayer
                     return 0;
                 }
 
-                if (this.IsCombination("5", "9") )
+                if (this.IsCombination("5", "9"))
                 {
                     return 0;
                 }
             }
-            catch
+            catch (Exception exception)
             {
+                try
+                {
+                    exceptionLog.Add(exception);
+                }
+                catch
+                { }
+
                 return int.MaxValue;
             }
 

@@ -1,4 +1,7 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+
+using Newtonsoft.Json;
 
 namespace PokerPlayer
 {
@@ -49,18 +52,20 @@ namespace PokerPlayer
             };
 
             this.Get["/basherlog"] = x =>
-                { return Response.AsJson(PlayerImpl.requestLog); };
+            { return Response.AsJson(PlayerImpl.requestLog); };
+
+            this.Get["/bashererror"] = x =>
+            { return Response.AsJson(PlayerImpl.exceptionLog); };
         }
 
-        private static Rootobject GetGameStateFromForm(string input)
+        public static Rootobject GetGameStateFromForm(string input)
         {
             if (string.IsNullOrEmpty(input))
             {
                 return null;
             }
 
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            return js.Deserialize<Rootobject>(input);
+            return JsonConvert.DeserializeObject<Rootobject>(input);
         }
     }
 

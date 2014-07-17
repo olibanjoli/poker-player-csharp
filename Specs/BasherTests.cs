@@ -120,6 +120,12 @@ namespace Specs
             Assert.AreEqual(1, result);
         }
 
+        [Test]
+        public void Blub()
+        {
+            PlayerService.GetGameStateFromForm(@"[{ 	""players"": [{ 		""name"": ""Team Rocket"", 		""stack"": 0, 		""status"": ""out"", 		""bet"": 0, 		""hole_cards"": null, 		""version"": ""0.0.7"", 		""id"": 0 	}, 	{ 		""name"": ""Basher"", 		""stack"": 1000, 		""status"": ""active"", 		""bet"": 0, 		""version"": ""0.7"", 		""id"": 1, 		""hole_cards"": [{ 			""rank"": ""4"", 			""suit"": ""hearts"" 		}, 		{ 			""rank"": ""9"", 			""suit"": ""hearts"" 		}] 	}, 	{ 		""name"": ""Scalatron"", 		""stack"": 1000, 		""status"": ""active"", 		""bet"": 0, 		""version"": ""0.1.0"", 		""id"": 2, 		""hole_cards"": null 	}, 	{ 		""name"": ""Grischa"", 		""stack"": 990, 		""status"": ""active"", 		""bet"": 10, 		""version"": ""Budweiser"", 		""id"": 3, 		""hole_cards"": null 	}, 	{ 		""name"": ""Bender"", 		""stack"": 980, 		""status"": ""active"", 		""bet"": 20, 		""version"": ""Always calling player"", 		""id"": 4, 		""hole_cards"": null 	}, 	{ 		""name"": ""Heroku Bender"", 		""stack"": 900, 		""status"": ""active"", 		""bet"": 100, 		""version"": ""Always calling player"", 		""id"": 5, 		""hole_cards"": null 	}], 	""small_blind"": 10, 	""orbits"": 0, 	""dealer"": 2, 	""community_cards"": [], 	""current_buy_in"": 100, 	""pot"": 130 }]");
+        }
+
         private static Player CreateBasher(int bet = 0, IEnumerable<Card> holeCards = null)
         {
             if (holeCards == null)
