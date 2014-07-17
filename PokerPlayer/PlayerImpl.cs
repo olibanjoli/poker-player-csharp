@@ -83,7 +83,7 @@ namespace PokerPlayer
                 catch
                 { }
 
-                return int.MaxValue;
+                return 0;
             }
 
             return this.Call();
