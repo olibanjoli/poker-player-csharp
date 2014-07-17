@@ -38,6 +38,12 @@ namespace PokerPlayer
 
                 _gameState = gameState;
 
+                // handle flop
+
+
+
+
+
                 if (this.IsPair("A", "K", "Q", "J"))
                 {
                     return _gameState.current_buy_in * 4;
@@ -86,7 +92,7 @@ namespace PokerPlayer
                 return 0;
             }
 
-            return this.Call();
+            return 0;
         }
 
         public bool HasCardLowerThan(Card limit)
