@@ -43,15 +43,15 @@ namespace PokerPlayer
                     return _gameState.current_buy_in * 4;
                 }
 
-                if (this.IsPair() && gameState.current_buy_in < 120)
-                {
-                    return this.Call();
-                }
+                //if (this.IsPair() && gameState.current_buy_in < 120)
+                //{
+                //    return this.Call();
+                //}
 
-                if (Basher.hole_cards.All(p => p.CompareTo(new Card("h", "J")) >= 0))
-                {
-                    return this.Call();
-                }
+                //if (Basher.hole_cards.All(p => p.CompareTo(new Card("h", "J")) >= 0))
+                //{
+                //    return this.Call();
+                //}
 
                 if (Basher.hole_cards != null && Basher.hole_cards[0].suit == Basher.hole_cards[1].suit)
                 {
