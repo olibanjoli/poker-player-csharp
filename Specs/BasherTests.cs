@@ -93,6 +93,23 @@ namespace Specs
         }
 
         [Test]
+        public void RaiseExceptionTest()
+        {
+            var bashers = new PlayerImpl();
+
+            var result = bashers.BetRequest(new Rootobject()
+            {
+                players = new Player[] { new Player(), new Player(), CreateBasher(0, new[] { new Card("h", "4"), new Card("c", "10") }) },
+                small_blind = 10,
+                pot = 30,
+                current_buy_in = 20,
+            });
+
+            Assert.AreEqual(0, result);
+        }
+
+
+        [Test]
         public void RankComparable()
         {
             var c1 = new Card("s", "k");
