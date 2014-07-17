@@ -12,13 +12,13 @@ namespace PokerPlayer
     public class PlayerImpl
     {
         public static List<Rootobject> requestLog = new List<Rootobject>();
-        public static List<Exception> exceptionLog = new List<Exception>(); 
+        public static List<string> exceptionLog = new List<string>(); 
 
         private Rootobject _gameState;
 
         private const string TeamName = "Poker-Bash";
 
-        public const string Version = "0.8";
+        public const string Version = "0.9";
 
         public string Check()
         {
@@ -78,7 +78,7 @@ namespace PokerPlayer
             {
                 try
                 {
-                    exceptionLog.Add(exception);
+                    exceptionLog.Add(exception.ToString());
                 }
                 catch
                 { }
