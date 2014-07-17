@@ -1,4 +1,6 @@
-﻿namespace PokerPlayer
+﻿using System.Runtime.CompilerServices;
+
+namespace PokerPlayer
 {
     using System;
     using System.IO;
@@ -45,6 +47,9 @@
                 }
                 return HttpStatusCode.NotAcceptable;
             };
+
+            this.Get["/basherlog"] = x =>
+                { return Response.AsJson(PlayerImpl.requestLog); };
         }
 
         private static Rootobject GetGameStateFromForm(string input)

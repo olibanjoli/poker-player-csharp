@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+
+using Newtonsoft.Json;
 
 namespace PokerPlayer
 {
@@ -7,13 +10,13 @@ namespace PokerPlayer
 
     public class PlayerImpl
     {
-
+        public static List<string> requestLog = new List<string>(); 
 
         private Rootobject _gameState;
 
         private const string TeamName = "Poker-Bash";
 
-        public const string Version = "0.5";
+        public const string Version = "0.6";
 
         public string Check()
         {
@@ -29,6 +32,8 @@ namespace PokerPlayer
         {
             try
             {
+                requestLog.Add(JsonConvert.SerializeObject(gameState));
+
                 _gameState = gameState;
 
                 if (this.IsPair("A", "K", "Q", "J"))
