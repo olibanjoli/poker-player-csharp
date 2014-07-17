@@ -25,7 +25,7 @@ namespace Specs
                                                     current_buy_in = 20
                                                 });
 
-            Assert.AreEqual(20, result);
+            Assert.AreEqual(0, result);
         }
 
         [Test]
@@ -73,7 +73,7 @@ namespace Specs
                 current_buy_in = 20,
             });
 
-            Assert.AreEqual(0, result);
+            Assert.AreEqual(80, result);
         }
 
         [Test]
@@ -105,6 +105,10 @@ namespace Specs
 
         private static Player CreateBasher(int bet = 0, IEnumerable<Card> holeCards = null)
         {
+            if (holeCards == null)
+            {
+                holeCards = new List<Card>() { new Card { rank = "2", suit = "s" }, new Card { rank = "7", suit = "h" }};
+            }
             return new Player
                        {
                            version = "0.1-poker-bash",

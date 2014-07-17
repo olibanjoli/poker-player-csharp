@@ -13,7 +13,7 @@ namespace PokerPlayer
 
         private const string TeamName = "Poker-Bash";
 
-        public const string Version = "0.4";
+        public const string Version = "0.5";
 
         public string Check()
         {
@@ -36,29 +36,33 @@ namespace PokerPlayer
                     return _gameState.current_buy_in * 4;
                 }
 
-                if (this.IsCombination("2", "7") ||
-                    this.IsCombination("3", "7") ||
-                    this.IsCombination("5", "9") ||
-                    this.IsCombination("6", "J") ||
-                    this.IsCombination("7", "J") ||
-                    this.IsCombination("8", "J") ||
-                    this.IsCombination("9", "Q") ||
-                    this.IsCombination("2", "Q") ||
-                    this.IsCombination("3", "Q") ||
-                    this.IsCombination("4", "Q") ||
-                    this.IsCombination("5", "Q") ||
-                    this.IsCombination("6", "Q") ||
-                    this.IsCombination("7", "Q") ||
-                    this.IsCombination("8", "Q") ||
-                    this.IsCombination("9", "K") ||
-                    this.IsCombination("2", "K") ||
-                    this.IsCombination("3", "K") ||
-                    this.IsCombination("4", "K") ||
-                    this.IsCombination("5", "K") ||
-                    this.IsCombination("6", "K") ||
-                    this.IsCombination("7", "K") ||
-                    this.IsCombination("8", "K") ||
-                    this.IsCombination("4", "7"))
+                if (this.IsPair())
+                {
+                    return this.Call();
+                }
+
+                if (Basher.hole_cards.Any(c => c.rank == "Q")
+                    && Basher.hole_cards.Any(c => c.CompareTo(new Card("s", "9")) <= 0))
+                {
+                    return 0;
+                }
+                if (Basher.hole_cards.Any(c => c.rank == "K")
+                    && Basher.hole_cards.Any(c => c.CompareTo(new Card("s", "8")) <= 0))
+                {
+                    return 0;
+                }
+                if (Basher.hole_cards.Any(c => c.rank == "J")
+                    && Basher.hole_cards.Any(c => c.CompareTo(new Card("s", "8")) <= 0))
+                {
+                    return 0;
+                }
+                if (Basher.hole_cards.Any(c => c.rank == "7")
+                    && Basher.hole_cards.Any(c => c.CompareTo(new Card("s", "4")) <= 0))
+                {
+                    return 0;
+                }
+
+                if (this.IsCombination("5", "9") )
                 {
                     return 0;
                 }
