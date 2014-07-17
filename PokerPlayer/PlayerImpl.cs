@@ -10,7 +10,7 @@ namespace PokerPlayer
 
         private const string TeamName = "Poker-Bash";
 
-        public const string Version = "0.1-pocker-bash";
+        public const string Version = "0.2";
 
         public string Check()
         {
@@ -24,7 +24,19 @@ namespace PokerPlayer
 
         public int BetRequest(Rootobject gameState)
         {
-            _gameState = gameState;
+            try
+            {
+                _gameState = gameState;
+
+                if (Basher.hole_cards.All(p => p.rank == "A"))
+                {
+                    return _gameState.current_buy_in * 4;
+                }
+            }
+            catch
+            {
+                return this.Call();
+            }
 
             return this.Call();
         }
@@ -38,7 +50,7 @@ namespace PokerPlayer
         {
             get
             {
-                return _gameState.players.Single(p => p.version == Version);
+                return _gameState.players.First(p => p.name.Contains(TeamName));
             }
         }
 
