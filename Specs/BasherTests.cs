@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 using NUnit.Framework;
@@ -75,13 +76,41 @@ namespace Specs
             Assert.AreEqual(0, result);
         }
 
+        [Test]
+        public void Pair()
+        {
+            var bashers = new PlayerImpl();
+
+            var result = bashers.BetRequest(new Rootobject()
+            {
+                players = new Player[] { new Player() {name = "asdf"}, new Player() {name = "ajsidfj"}, CreateBasher(0, new[] { new Card("h", "4"), new Card("c", "4") }) },
+                small_blind = 10,
+                pot = 30,
+                current_buy_in = 20,
+            });
+
+            Assert.AreEqual(0, result);
+        }
+
+        [Test]
+        public void RankComparable()
+        {
+            var c1 = new Card("s", "k");
+            var c2 = new Card("s", "3");
+
+            var result = c1.CompareTo(c2);
+
+            Assert.AreEqual(1, result);
+        }
+
         private static Player CreateBasher(int bet = 0, IEnumerable<Card> holeCards = null)
         {
             return new Player
                        {
                            version = "0.1-poker-bash",
-                           name = "poker-bash",
-                           bet = bet
+                           name = "Poker-Bash",
+                           bet = bet,
+                           hole_cards = holeCards.ToArray()
                        };
         }
     }

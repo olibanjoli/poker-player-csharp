@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace PokerPlayer.Generated
 {
@@ -27,7 +28,7 @@ namespace PokerPlayer.Generated
         public int id { get; set; }
     }
 
-    public class Card
+    public class Card : IComparable<Card>
     {
         public string rank { get; set; }
         public string suit { get; set; }
@@ -59,7 +60,29 @@ namespace PokerPlayer.Generated
                 this.suit = "clubs";
             }
 
-            this.rank = rank;
+            this.rank = rank.ToUpperInvariant();
+        }
+
+        private Dictionary<string, int> ranks = new Dictionary<string, int>()
+                                                    {
+                                                        { "2", 2},
+                                                        { "3", 3},
+                                                        { "4", 4},
+                                                        { "5", 5},
+                                                        { "6", 6},
+                                                        { "7", 7},
+                                                        { "8", 8},
+                                                        { "9", 9},
+                                                        { "10", 10},
+                                                        { "J", 11},
+                                                        { "Q", 12},
+                                                        { "K", 13},
+                                                        { "A", 14},
+                                                    };
+
+        public int CompareTo(Card other)
+        {
+            return ranks[this.rank].CompareTo(ranks[other.rank]);
         }
     }
 
