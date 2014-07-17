@@ -48,25 +48,9 @@ namespace PokerPlayer
                     return this.Call();
                 }
 
-                if (Basher.hole_cards.Any(c => c.rank == "Q")
-                    && Basher.hole_cards.Any(c => c.CompareTo(new Card("s", "9")) <= 0))
+                if (Basher.hole_cards.All(p => p.CompareTo(new Card("h", "J")) >= 0))
                 {
-                    return 0;
-                }
-                if (Basher.hole_cards.Any(c => c.rank == "K")
-                    && Basher.hole_cards.Any(c => c.CompareTo(new Card("s", "8")) <= 0))
-                {
-                    return 0;
-                }
-                if (Basher.hole_cards.Any(c => c.rank == "J")
-                    && Basher.hole_cards.Any(c => c.CompareTo(new Card("s", "8")) <= 0))
-                {
-                    return 0;
-                }
-                if (Basher.hole_cards.Any(c => c.rank == "7")
-                    && Basher.hole_cards.Any(c => c.CompareTo(new Card("s", "4")) <= 0))
-                {
-                    return 0;
+                    return this.Call();
                 }
 
                 if (this.IsCombination("5", "9"))
