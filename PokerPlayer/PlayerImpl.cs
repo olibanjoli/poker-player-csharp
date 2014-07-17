@@ -10,13 +10,13 @@ namespace PokerPlayer
 
     public class PlayerImpl
     {
-        public static List<string> requestLog = new List<string>(); 
+        public static List<Rootobject> requestLog = new List<Rootobject>(); 
 
         private Rootobject _gameState;
 
         private const string TeamName = "Poker-Bash";
 
-        public const string Version = "0.6";
+        public const string Version = "0.7";
 
         public string Check()
         {
@@ -32,7 +32,7 @@ namespace PokerPlayer
         {
             try
             {
-                requestLog.Add(JsonConvert.SerializeObject(gameState));
+                requestLog.Add(gameState);
 
                 _gameState = gameState;
 
@@ -80,7 +80,7 @@ namespace PokerPlayer
             return this.Call();
         }
 
-        public bool HaveCardLowerThan(Card limit)
+        public bool HasCardLowerThan(Card limit)
         {
             return Basher.hole_cards.Any(c => c.CompareTo(limit) < 0);
         }
