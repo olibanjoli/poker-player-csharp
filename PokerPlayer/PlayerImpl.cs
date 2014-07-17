@@ -18,7 +18,7 @@ namespace PokerPlayer
 
         private const string TeamName = "Poker-Bash";
 
-        public const string Version = "1.0RC37";
+        public const string Version = "1.1";
 
         public string Check()
         {
@@ -38,18 +38,12 @@ namespace PokerPlayer
 
                 _gameState = gameState;
 
-                // handle flop
-
-
-
-
-
                 if (this.IsPair("A", "K", "Q", "J"))
                 {
                     return _gameState.current_buy_in * 4;
                 }
 
-                if (this.IsPair())
+                if (this.IsPair() && gameState.current_buy_in < 120)
                 {
                     return this.Call();
                 }
