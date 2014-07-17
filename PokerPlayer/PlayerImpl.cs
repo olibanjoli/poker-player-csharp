@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace PokerPlayer
 {
@@ -28,7 +29,7 @@ namespace PokerPlayer
             {
                 _gameState = gameState;
 
-                if (Basher.hole_cards.All(p => p.rank == "A"))
+                if (this.IsPair("A", "K", "Q", "J"))
                 {
                     return _gameState.current_buy_in * 4;
                 }
@@ -39,6 +40,16 @@ namespace PokerPlayer
             }
 
             return this.Call();
+        }
+
+        private bool IsPair(params string[] ranks)
+        {
+            return ranks.Any(IsPair);
+        }
+
+        private bool IsPair(string rank)
+        {
+            return this.Basher.hole_cards.All(p => p.rank == rank);
         }
 
         private int Call()
